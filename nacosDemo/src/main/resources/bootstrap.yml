@@ -1,0 +1,15 @@
+#spring:
+#  profiles:
+#    active: master
+#  application:
+#    name: nacos
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 10.22.11.23:8848
+#      config:
+#        file-extension: yaml
+#
+server:
+  port: 8081
+

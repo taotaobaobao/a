@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace我们对应到了我们的EmpMapper接口 -->
+
+<mapper namespace="com.wt.dao.mapper.SysPermMapper">
+
+    <resultMap id="result" type="com.wt.dao.entity.SysPerm">
+        <id property="id" column="id"/>
+        <result property="spName" column="sp_name"/>
+        <result property="spKey" column="sp_key"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+
+
+    <select id="findUserPermByUserName" resultMap="result">
+        select e.sp_key, e.sp_name from sys_user_role a
+        left join sys_user b on b.id = a.user_id
+        left join sys_role c on a.role_id = c.id
+        left join sys_role_perm d on c.id=d.role_id
+        left join sys_perm e on e.id=d.perm_id
+        where  b.su_name = #{userName}
+        and a.deleted="0" and b.deleted="0" and c.deleted="0" and d.deleted="0" and e.deleted="0"
+    </select>
+
+
+</mapper>

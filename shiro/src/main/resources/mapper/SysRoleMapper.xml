@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace我们对应到了我们的EmpMapper接口 -->
+
+<mapper namespace="com.wt.dao.mapper.SysRoleMapper">
+
+    <resultMap id="result" type="com.wt.dao.entity.SysRole">
+        <id property="id" column="id"/>
+        <result property="srName" column="sr_name"/>
+        <result property="srKey" column="sr_key"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="deleted" column="deleted"/>
+        <result property="srRemark" column="sr_remark"/>
+    </resultMap>
+
+    <sql id="role">
+            id,sr_name,sr_key,create_date,update_date,deleted,sr_remark
+    </sql>
+
+    <select id="findUserNameRoleByUserName" resultMap="result">
+        select c.sr_name,c.sr_key from sys_user_role a
+        left join sys_user b on b.id=a.user_id
+        left join sys_role c on a.role_id=c.id
+        where b.su_name=#{userName}
+        and b.deleted="0" and a.deleted="0" and c.deleted="0"
+    </select>
+
+
+    <select id="findAllRole" resultMap="result">
+        select <include refid="role"/> from sys_role
+    </select>
+
+
+</mapper>

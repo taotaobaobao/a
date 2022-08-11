@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace我们对应到了我们的EmpMapper接口 -->
+
+<mapper namespace="com.wt.dao.mapper.SysUserMapper">
+
+    <resultMap id="result" type="com.wt.dao.entity.SysUser">
+        <id property="id" column="id"/>
+        <result property="suPhone" column="su_phone"/>
+        <result property="suSalt" column="su_salt"/>
+        <result property="suPassword" column="su_password"/>
+        <result property="suAvatar" column="su_avatar"/>
+        <result property="suName" column="su_name"/>
+        <result property="suSex" column="su_sex"/>
+        <result property="suBirth" column="su_birth"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+
+    <sql id="user">
+        id,su_phone,su_salt,su_password,su_avatar,su_name,su_sex,su_birth,create_date,update_date,deleted
+    </sql>
+
+    <select id="findAll" resultMap="result">
+        select <include refid="user"/> from sys_user
+    </select>
+
+    <select id="findUserByUserName" resultMap="result">
+        select <include refid="user"/> from sys_user where su_name=#{userName} and deleted="0";
+    </select>
+
+
+</mapper>

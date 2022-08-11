@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace我们对应到了我们的EmpMapper接口 -->
+
+<mapper namespace="com.wt.dao.mapper.SysUserRoleMapper">
+
+    <resultMap id="result" type="com.wt.dao.entity.SysUserRole">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="roleId" column="role_id"/>
+        <result property="createDate" column="create_date"/>
+        <result property="deleted" column="deleted"/>
+    </resultMap>
+
+
+
+
+</mapper>
